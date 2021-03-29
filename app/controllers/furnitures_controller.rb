@@ -11,25 +11,25 @@ class FurnituresController < ApplicationController
         end
         
         def create
-            @furniture = Furniture.new(furniture_params)
+            @furniture = Furniture.create(furniture_params)
     
         if @furniture.save
-          render json: @furniture, status: :created, location: @furniture
+          render json: @furniture
         else
           render json: @furniture.errors, status: :unprocessable_entity
         end
         end
     
         def update
-            @furniture = Furniture.find(params[:id])
-            @furniture.update(furniture_params)
-            render json: @furniture
+            furniture = Furniture.find(params[:id])
+            furniture.update(furniture_params)
+            render json: furniture
         end
     
         def destroy
             furniture = Furniture.find(params[:id])
-            @furniture.destroy
-            render json: @furniture
+            furniture.destroy
+            render json: furniture
         end
     
         private
